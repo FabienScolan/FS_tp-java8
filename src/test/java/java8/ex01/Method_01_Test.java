@@ -16,8 +16,14 @@ public class Method_01_Test {
 	interface IDao {
 		List<Person> findAll();
 
-		int sumAge();
+		default int sumAge() {
+			int result = 0;
+			for (Person p : findAll()) {
+				result += p.getAge();
+			}
+			return result;
 
+		}
 	}
 	// end::IDao[]
 
@@ -28,16 +34,6 @@ public class Method_01_Test {
 		@Override
 		public List<Person> findAll() {
 			return people;
-		}
-
-		@Override
-		public int sumAge() {
-			int result = 0;
-			for (Person p : people) {
-				result += p.getAge();
-			}
-			return result;
-
 		}
 
 	}
@@ -51,22 +47,13 @@ public class Method_01_Test {
 			return people;
 		}
 
-		@Override
-		public int sumAge() {
-			int result = 0;
-			for (Person p : people) {
-				result += p.getAge();
-			}
-			return result;
-
-		}
 	}
 
 	@Test
 	public void test_daoA_sumAge() throws Exception {
 
 		DaoA daoA = new DaoA();
-		
+
 		// TODO invoquer la méthode sumAge pour que le test soit passant
 		int result = 0;
 		for (Person p : daoA.people) {
