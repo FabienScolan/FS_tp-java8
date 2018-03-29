@@ -72,7 +72,7 @@ public class Stream_01_Test {
         // TODO récupérer toutes les commandes dont
         // TODO le prénom du client est "Johnny"
         // TODO dont au moins une pizza a un prix >= 1300
-        List<Order> result = orders.stream().filter(o -> o.getCustomer().getFirstname().equals("Johny")).allMatch(o -> o.getPizzas().forEach(p -> p.getPrice()>=1300)));
+        List<Order> result = orders.stream().filter(o -> o.getCustomer().getFirstname().equals("Johnny")).filter(o -> o.getPizzas().stream().anyMatch(p -> p.getPrice() >= 1300)).collect(Collectors.toList());
 
         assertThat(result, hasSize(1));
         assertThat(result.get(0), hasProperty("id", is(8)));
