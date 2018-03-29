@@ -55,14 +55,12 @@ public class Optional_02_Test {
 
 		Optional<Person> julesOpt = Optional.of(jules);
 
-		// TODO appliquer la méthode "filter" à julesOpt avec le prédicat
-		// "adult"
-		Optional<Integer> res = julesOpt.filter(adult).map((p) -> p.getAge());
-		// TODO chaîner avec la méthode "map" pour récupérer l'age
+		//Optional<Integer> res = julesOpt.filter(adult).map((p) -> p.getAge());
 		// TODO utiliser la méthode isPresent pour vérifier que l'age est bien
 		// 30, déclencher l'exception GoodException pour valider que la fonction
 		// en paramètre de ifPresent a bien été exécutée.
 		// julesOpt.filter...;
-		res.ifPresent(() -> {throw new GoodException();});
+		//res.ifPresent();
+		julesOpt.filter(adult).map((p) -> p.getAge()).ifPresent((i) -> {if (i==30) throw new GoodException();});
 	}
 }
